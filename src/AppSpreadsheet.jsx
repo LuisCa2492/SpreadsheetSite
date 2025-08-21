@@ -7,6 +7,7 @@ import AddCombo from './components/AddCombo';
 import SideBar from './ui/SideBar';
 import Box from '@mui/material/Box';
 import ShowAll from './components/ShowAll';
+import Details from './components/Details';
 const AppSpreadsheet = () => {
   const drawerWidth = 240;
   const [count, setCount] = useState(0)
@@ -22,12 +23,13 @@ const AppSpreadsheet = () => {
           sx={{
             flexGrow: 1,
             p: 3,
-            marginLeft: `${drawerWidth}px`, // deja espacio para el Drawer
+            // marginLeft: `${drawerWidth}px`, // deja espacio para el Drawer
           }}
         >
           <Routes>
             <Route path="/new" element={<AddCombo texto="Nuevo combo" />} />
             <Route path="/all" element={<ShowAll texto="Nuevo combo" />} />
+            <Route path="/Details/:fakeId" element={<Details texto="Nuevo combo" />} />
             <Route path="/*" element={<Navigate to="/new" />} />
           </Routes>
         </Box>

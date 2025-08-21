@@ -5,10 +5,15 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useDispatch } from 'react-redux';
+import { nuevaEntrada } from '../store/slices/thunks';
 
 const AddCombo = ({ texto }) => {
 
   const [verContrasena, setVerContrasena] = useState(false);
+  const dispatch = useDispatch();
+
+
   const EsquemaValidaciones = Yup.object({
     descripcion: Yup.string().required('La descripción es obligatoria'),
     deck: Yup.string().required('El nombre del deck es obligatorio'),
@@ -25,6 +30,7 @@ const AddCombo = ({ texto }) => {
   // 3. Función que se ejecuta al enviar el formulario
   const onSubmit = (values, { resetForm }) => {
     console.log("Datos enviados:", values);
+    dispatch(nuevaEntrada(values));
     resetForm();
   };
   return (
@@ -33,7 +39,7 @@ const AddCombo = ({ texto }) => {
         sx={{
           display: "grid",
           gridTemplateColumns: "repeat(12, 1fr)", // 12 columnas
-          gap: 2
+          // gap: 2
         }}
       >
         <Box sx={{ gridColumn: "span ", bgcolor: "", p: 2, color: "white" }}></Box>
